@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3659213298637311993
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3659213298637311995}
+  - component: {fileID: 3659213298637311994}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3659213298637311995
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3659213298637311993}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3659213298637311994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3659213298637311993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a73d0bf1aedc2104a85184f25607cb42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnObjects:
+  - prefab: {fileID: 7304117679711609736, guid: 3fa34b85ca454474bbea9b6edd31c62a, type: 3}
+    chance: 0.2
+    minVertVariation: 0
+    maxVertVariation: 0
+  - prefab: {fileID: 7304117679711609736, guid: 64964b14a5c46dc429e5f39b91e4d7d9, type: 3}
+    chance: 0.2
+    minVertVariation: 0
+    maxVertVariation: 0
+  - prefab: {fileID: 7304117679711609736, guid: 57cbe7e450a413d438547824dfbb30e4, type: 3}
+    chance: 0.15
+    minVertVariation: 0
+    maxVertVariation: 0
+  - prefab: {fileID: 7304117679711609736, guid: 8e08b5adb4e229546aac852abfc13bbf, type: 3}
+    chance: 0.15
+    minVertVariation: 0
+    maxVertVariation: 0
+  - prefab: {fileID: 7304117679711609736, guid: cc1afffbc6b962a48ac525a114ac6ff2, type: 3}
+    chance: 0.1
+    minVertVariation: 0
+    maxVertVariation: 0
+  - prefab: {fileID: 7304117679711609736, guid: c847260c0a3ca2447aeaa836b19b273a, type: 3}
+    chance: 0.1
+    minVertVariation: 0
+    maxVertVariation: 0
+  - prefab: {fileID: 7304117679711609736, guid: eecfbe23b1fe1f1459d8e7bc3785a3cf, type: 3}
+    chance: 0.05
+    minVertVariation: -0.5
+    maxVertVariation: 0
+  minSpawnRate: 1
+  maxSpawnRate: 2
