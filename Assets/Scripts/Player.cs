@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Obstacle")
         {
             animator.SetBool("isDead", true);
-            Time.timeScale = 0f;
+            GameManager.Instance.paused = true;
         }
     }
 }
