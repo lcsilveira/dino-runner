@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private TextMeshProUGUI pointsTMP;
+    [SerializeField] private TextMeshProUGUI recordTMP;
 
     public static GameManager Instance { get; private set; }
 
@@ -37,6 +38,9 @@ public class GameManager : MonoBehaviour
         initialGameSpeed = gameSpeed;
         DontDestroyOnLoad(gameObject);
         InvokeRepeating(nameof(countScore), secondsForScore, secondsForScore);
+
+        //if (PlayerPrefs.HasKey("highScore"))
+        //    recordTMP.text = PlayerPrefs.GetInt("hiScore").ToString();
     }
 
     private void Update()
@@ -54,7 +58,7 @@ public class GameManager : MonoBehaviour
         float speedIncrease = points / 50f;
         speedIncrease = (float)Math.Floor(speedIncrease);
 
-        gameSpeed = initialGameSpeed + speedIncrease/2;
+        gameSpeed = initialGameSpeed + speedIncrease / 2;
 
         pointsTMP.text = points.ToString();
     }
@@ -72,4 +76,13 @@ public class GameManager : MonoBehaviour
         paused = !paused;
         EventSystem.current.SetSelectedGameObject(null);
     }
+
+    //public void SetHighScore()
+    //{
+        //if (!PlayerPrefs.HasKey("highScore") || points > PlayerPrefs.GetInt("hiScore"))
+        //{
+        //    PlayerPrefs.SetInt("highScore", (int)points);
+        //    recordTMP.text = points.ToString();
+        //}
+    //}
 }

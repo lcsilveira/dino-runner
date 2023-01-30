@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &115594655 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 115594655, guid: c2b245d087b260b459e79a442ed5e36b, type: 3}
+  m_PrefabInstance: {fileID: 1243047901576776516}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &263264307
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,10 +292,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 115594655, guid: c2b245d087b260b459e79a442ed5e36b, type: 3}
+      propertyPath: m_text
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1597128436, guid: c2b245d087b260b459e79a442ed5e36b, type: 3}
+      propertyPath: m_text
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 594579017056281679, guid: c2b245d087b260b459e79a442ed5e36b, type: 3}
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5146783305070846107, guid: c2b245d087b260b459e79a442ed5e36b, type: 3}
+      propertyPath: recordTMP
+      value: 
+      objectReference: {fileID: 115594655}
     - target: {fileID: 5814035004406386718, guid: c2b245d087b260b459e79a442ed5e36b, type: 3}
       propertyPath: m_RootOrder
       value: 3
