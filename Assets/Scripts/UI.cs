@@ -11,6 +11,13 @@ public class UI : MonoBehaviour
     private void Update()
     {
         bool paused = GameManager.Instance.paused;
+
+        if (Input.GetButtonDown("Cancel"))
+            GameManager.Instance.TogglePause();
+
+        if (paused && Input.GetButtonDown("Submit"))
+            GameManager.Instance.TogglePause();
+
         animator.SetBool("paused", paused);
 
         buttonText.text = paused ? "Play" : "Pause";
