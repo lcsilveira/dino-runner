@@ -46,11 +46,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnObjects:
   - prefab: {fileID: 7304117679711609736, guid: 3fa34b85ca454474bbea9b6edd31c62a, type: 3}
-    chance: 0.2
+    chance: 0.15
     minVertVariation: 0
     maxVertVariation: 0
   - prefab: {fileID: 7304117679711609736, guid: 64964b14a5c46dc429e5f39b91e4d7d9, type: 3}
-    chance: 0.2
+    chance: 0.15
     minVertVariation: 0
     maxVertVariation: 0
   - prefab: {fileID: 7304117679711609736, guid: 57cbe7e450a413d438547824dfbb30e4, type: 3}
@@ -62,16 +62,16 @@ MonoBehaviour:
     minVertVariation: 0
     maxVertVariation: 0
   - prefab: {fileID: 7304117679711609736, guid: cc1afffbc6b962a48ac525a114ac6ff2, type: 3}
-    chance: 0.1
+    chance: 0.13
     minVertVariation: 0
     maxVertVariation: 0
   - prefab: {fileID: 7304117679711609736, guid: c847260c0a3ca2447aeaa836b19b273a, type: 3}
-    chance: 0.1
+    chance: 0.12
     minVertVariation: 0
     maxVertVariation: 0
   - prefab: {fileID: 7304117679711609736, guid: eecfbe23b1fe1f1459d8e7bc3785a3cf, type: 3}
-    chance: 0.05
+    chance: 0.1
     minVertVariation: -0.5
     maxVertVariation: 0
   minSpawnRate: 1
-  maxSpawnRate: 2
+  maxSpawnRate: 1.5

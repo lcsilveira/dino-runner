@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Runtime.CompilerServices;
 using TMPro;
 using Unity.VisualScripting.Antlr3.Runtime;
@@ -11,15 +12,22 @@ public class GameManager : MonoBehaviour
 {
     [Header("Properties")]
     public float gameSpeed = 5f;
-    public bool paused = true;
-    public uint points;
-    public float secondsForScore = 1f;
-
-    private float initialGameSpeed;
+    [SerializeField] private float secondsForScore = 0.5f;
+    [SerializeField] private float secondsForSpeedIncrement = 1f;
+    [SerializeField] private float speedIncrement = 0.25f;
 
     [Header("References")]
     [SerializeField] private TextMeshProUGUI pointsTMP;
     [SerializeField] private TextMeshProUGUI recordTMP;
+
+    [Header("Save Manager")]
+    private PlayerData playerData;
+    private string savePath;
+    private const string saveFile = "SavedData.json";
+
+    [Header("Debug")]
+    public bool paused = true;
+    public uint highScore, score;
 
     public static GameManager Instance { get; private set; }
 
@@ -35,12 +43,13 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        initialGameSpeed = gameSpeed;
         DontDestroyOnLoad(gameObject);
-        InvokeRepeating(nameof(countScore), secondsForScore, secondsForScore);
+        InvokeRepeating(nameof(CountScore), secondsForScore, secondsForScore);
+        InvokeRepeating(nameof(IncreaseSpeed), secondsForSpeedIncrement, secondsForSpeedIncrement);
 
-        //if (PlayerPrefs.HasKey("highScore"))
-        //    recordTMP.text = PlayerPrefs.GetInt("hiScore").ToString();
+        savePath = Application.persistentDataPath + Path.AltDirectorySeparatorChar + saveFile;
+        LoadData();
+        UpdateUI();
     }
 
     private void Update()
@@ -51,16 +60,15 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1;
     }
 
-    private void countScore()
+    private void CountScore()
     {
-        points++;
+        score++;
+        UpdateUI();
+    }
 
-        float speedIncrease = points / 50f;
-        speedIncrease = (float)Math.Floor(speedIncrease);
-
-        gameSpeed = initialGameSpeed + speedIncrease / 2;
-
-        pointsTMP.text = points.ToString();
+    private void IncreaseSpeed()
+    {
+        gameSpeed += speedIncrement;
     }
 
     private void OnDestroy()
@@ -77,12 +85,35 @@ public class GameManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
     }
 
-    //public void SetHighScore()
-    //{
-        //if (!PlayerPrefs.HasKey("highScore") || points > PlayerPrefs.GetInt("hiScore"))
-        //{
-        //    PlayerPrefs.SetInt("highScore", (int)points);
-        //    recordTMP.text = points.ToString();
-        //}
-    //}
+    public void UpdateUI()
+    {
+        pointsTMP.text = score.ToString();
+        recordTMP.text = highScore.ToString();
+    }
+
+    public void SaveData()
+    {
+        if (playerData == null)
+            playerData = new PlayerData(score);
+        else
+            playerData.highScore = highScore = score;
+        string json = JsonUtility.ToJson(playerData);
+
+        StreamWriter writer = new StreamWriter(savePath);
+        writer.Write(json);
+        writer.Close();
+    }
+
+    public void LoadData()
+    {
+        if (File.Exists(savePath))
+        {
+            StreamReader reader = new StreamReader(savePath);
+            string json = reader.ReadToEnd();
+
+            playerData = JsonUtility.FromJson<PlayerData>(json);
+            highScore = playerData.highScore;
+            reader.Close();
+        }
+    }
 }

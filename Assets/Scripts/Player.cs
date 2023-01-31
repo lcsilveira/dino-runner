@@ -48,7 +48,11 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("isDead", true);
             GameManager.Instance.paused = true;
-            //GameManager.Instance.SetHighScore();
+            if (GameManager.Instance.score > GameManager.Instance.highScore)
+            {
+                GameManager.Instance.SaveData();
+                GameManager.Instance.UpdateUI();
+            }
         }
     }
 }

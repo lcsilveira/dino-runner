@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
+    [SerializeField] private float obstacleSpeed = 1f;
     private Vector3 leftEdge;
 
     private void Start()
@@ -14,8 +15,8 @@ public class Obstacle : MonoBehaviour
 
     private void Update()
     {
-        float speed = GameManager.Instance.gameSpeed / transform.localScale.x;
-        transform.position -= Vector3.right * speed * Time.deltaTime;
+        float scenarioSpeed = GameManager.Instance.gameSpeed / transform.localScale.x;
+        transform.position -= Vector3.right * scenarioSpeed * obstacleSpeed * Time.deltaTime;
         if (transform.position.x <= leftEdge.x - 2f)
         {
             Destroy(gameObject);

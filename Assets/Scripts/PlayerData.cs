@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerData
 {
-    public int highScore;
+    public uint highScore;
 
-    public PlayerData(int highScore)
+    public PlayerData(uint highScore = 0)
     {
         this.highScore = highScore;
     }

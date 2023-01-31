@@ -28,7 +28,6 @@ public class Spawner : MonoBehaviour
     private void Spawn()
     {
         float chanceSelector = UnityEngine.Random.Range(0f, 1f);
-        //Debug.Log(chanceSelector);
         foreach (var spawnObject in spawnObjects)
         {
             if (spawnObject.prefab != null && chanceSelector <= spawnObject.chance)
@@ -42,7 +41,6 @@ public class Spawner : MonoBehaviour
                 break;
             }
             chanceSelector -= spawnObject.chance;
-            //Debug.Log("Decreasing chanceSelector nbr: " + chanceSelector);
         }
 
         Invoke(nameof(Spawn), UnityEngine.Random.Range(minSpawnRate, maxSpawnRate));
