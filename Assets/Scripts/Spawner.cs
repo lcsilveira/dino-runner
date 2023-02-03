@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -19,10 +18,23 @@ public class Spawner : MonoBehaviour
     [SerializeField] private float minSpawnRate;
     [SerializeField] private float maxSpawnRate;
 
+    [Header("Debug")]
+    [SerializeField] private Vector3 rightEdge;
+    [SerializeField] private Vector3 spawnPosition;
+
     private void Start()
     {
         if (spawnObjects.Length > 0)
             Invoke(nameof(Spawn), UnityEngine.Random.Range(minSpawnRate, maxSpawnRate));
+
+        FixSpawnLocation();
+    }
+
+    private void FixSpawnLocation()
+    {
+        rightEdge = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight / 2));
+        spawnPosition = new Vector3(rightEdge.x + 2, rightEdge.y);
+        transform.position = spawnPosition;
     }
 
     private void Spawn()

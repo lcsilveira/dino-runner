@@ -1,7 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Obstacle : MonoBehaviour
 {
@@ -17,9 +15,11 @@ public class Obstacle : MonoBehaviour
     {
         float scenarioSpeed = GameManager.Instance.gameSpeed / transform.localScale.x;
         transform.position -= Vector3.right * scenarioSpeed * obstacleSpeed * Time.deltaTime;
+
+        //Vector3 destination = transform.position - Vector3.right * scenarioSpeed * obstacleSpeed;
+        //transform.position = Vector3.Lerp(transform.position, destination, Time.deltaTime / 2);
+
         if (transform.position.x <= leftEdge.x - 2f)
-        {
             Destroy(gameObject);
-        }
     }
 }

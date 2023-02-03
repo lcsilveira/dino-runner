@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
@@ -16,12 +14,32 @@ public class Player : MonoBehaviour
 
     [Header("Debug")]
     [SerializeField] private bool isGrounded;
+    [SerializeField] private Vector3 spawnPosition;
+    [SerializeField] private float leftSpawnMargin;
+
+    private void Start()
+    {
+        FixSpawnLocation();
+    }
+
+    private void FixSpawnLocation()
+    {
+        // 10% ahead of the left margin.
+        leftSpawnMargin = (float)Camera.main.pixelWidth * 0.1f;
+        spawnPosition = Camera.main.ScreenToWorldPoint(new Vector3(leftSpawnMargin, 0f));
+        spawnPosition.y = transform.position.y;
+        spawnPosition.z = transform.position.z;
+        transform.position = spawnPosition;
+    }
 
     private void Update()
     {
         if (isGrounded)
         {
-            if (Input.GetButton("Jump"))
+            bool isUITouch = EventSystem.current.IsPointerOverGameObject(0);
+            bool touchJump = !isUITouch && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began;
+
+            if (Input.GetButton("Jump") || touchJump)
             {
                 isGrounded = false;
                 animator.SetBool("isGrounded", false);
@@ -48,6 +66,7 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("isDead", true);
             GameManager.Instance.paused = true;
+            GameManager.Instance.isDead = true;
             if (GameManager.Instance.score > GameManager.Instance.highScore)
             {
                 GameManager.Instance.SaveData();

@@ -1,12 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
-using System.Runtime.CompilerServices;
 using TMPro;
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,9 +12,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float secondsForSpeedIncrement = 1f;
     [SerializeField] private float speedIncrement = 0.25f;
 
+    private float initialGameSpeed;
+
     [Header("References")]
     [SerializeField] private TextMeshProUGUI pointsTMP;
     [SerializeField] private TextMeshProUGUI recordTMP;
+
+    [SerializeField] public Animator animatorUI;
+    [SerializeField] private TextMeshProUGUI playButtonText;
 
     [Header("Save Manager")]
     private PlayerData playerData;
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Debug")]
     public bool paused = true;
+    public bool isDead = false;
     public uint highScore, score;
 
     public static GameManager Instance { get; private set; }
@@ -39,6 +41,8 @@ public class GameManager : MonoBehaviour
             Instance = this;
         else
             DestroyImmediate(gameObject);
+
+        initialGameSpeed = gameSpeed;
     }
 
     private void Start()
@@ -58,6 +62,19 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0;
         else
             Time.timeScale = 1;
+        UpdateMenu();
+    }
+
+    private void UpdateMenu()
+    {
+        if (Input.GetButtonDown("Cancel") || (paused && Input.GetButtonDown("Submit")))
+            TogglePause();
+        animatorUI.SetBool("paused", paused);
+
+        if (isDead)
+            playButtonText.text = "Play again";
+        else
+            playButtonText.text = paused ? "Play" : "Pause";
     }
 
     private void CountScore()
@@ -83,6 +100,14 @@ public class GameManager : MonoBehaviour
     {
         paused = !paused;
         EventSystem.current.SetSelectedGameObject(null);
+
+        if (isDead)
+        {
+            isDead = false;
+            gameSpeed = initialGameSpeed;
+            score = 0;
+            SceneManager.LoadScene(0);
+        }
     }
 
     public void UpdateUI()
