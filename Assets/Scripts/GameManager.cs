@@ -15,11 +15,11 @@ public class GameManager : MonoBehaviour
     private float initialGameSpeed;
 
     [Header("References")]
-    [SerializeField] private TextMeshProUGUI pointsTMP;
-    [SerializeField] private TextMeshProUGUI recordTMP;
-
+    [SerializeField] private TextMeshProUGUI scoreTMP;
+    [SerializeField] private TextMeshProUGUI highScoreTMP;
     [SerializeField] public Animator animatorUI;
     [SerializeField] private TextMeshProUGUI playButtonText;
+    [SerializeField] private GameObject menuObj;
 
     [Header("Save Manager")]
     private PlayerData playerData;
@@ -101,6 +101,8 @@ public class GameManager : MonoBehaviour
         paused = !paused;
         EventSystem.current.SetSelectedGameObject(null);
 
+        menuObj.SetActive(paused);
+
         if (isDead)
         {
             isDead = false;
@@ -112,8 +114,8 @@ public class GameManager : MonoBehaviour
 
     public void UpdateUI()
     {
-        pointsTMP.text = score.ToString();
-        recordTMP.text = highScore.ToString();
+        scoreTMP.text = score.ToString();
+        highScoreTMP.text = highScore.ToString();
     }
 
     public void SaveData()
