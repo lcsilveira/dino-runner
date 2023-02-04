@@ -49,7 +49,8 @@ MonoBehaviour:
     chance: 0.95
     minVertVariation: -1
     maxVertVariation: 3
-  minSpawnRate: 2
-  maxSpawnRate: 10
+  minSpawnRate: 3
+  maxSpawnRate: 7
   rightEdge: {x: 0, y: 0, z: 0}
   spawnPosition: {x: 0, y: 0, z: 0}
+  spawnAcceleration: 0

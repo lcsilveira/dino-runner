@@ -21,6 +21,7 @@ public class Spawner : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private Vector3 rightEdge;
     [SerializeField] private Vector3 spawnPosition;
+    [SerializeField] private float spawnAcceleration;
 
     private void Start()
     {
@@ -55,6 +56,10 @@ public class Spawner : MonoBehaviour
             chanceSelector -= spawnObject.chance;
         }
 
-        Invoke(nameof(Spawn), UnityEngine.Random.Range(minSpawnRate, maxSpawnRate));
+        // Decreases the time between spawns the game speed increases (limited to 0,5s).
+        if (spawnAcceleration < 0.5)
+            spawnAcceleration = GameManager.Instance.gameSpeed / 100;
+
+        Invoke(nameof(Spawn), UnityEngine.Random.Range(minSpawnRate - spawnAcceleration, maxSpawnRate - spawnAcceleration));
     }
 }
