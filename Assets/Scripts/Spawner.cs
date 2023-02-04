@@ -6,8 +6,8 @@ public class SpawnObject
 {
     public GameObject prefab;
     [Range(0, 1f)] public float chance;
-    [Range(-1f, 0)] public float minVertVariation;
-    [Range(0, 1f)] public float maxVertVariation;
+    [Range(-5f, 0)] public float minVertVariation;
+    [Range(0, 5f)] public float maxVertVariation;
 }
 
 public class Spawner : MonoBehaviour
