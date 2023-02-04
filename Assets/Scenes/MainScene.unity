@@ -226,6 +226,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1243047903451062519, guid: c2b245d087b260b459e79a442ed5e36b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 147
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968086492905051137, guid: c2b245d087b260b459e79a442ed5e36b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 147.00003
+      objectReference: {fileID: 0}
     - target: {fileID: 5814035004406386718, guid: c2b245d087b260b459e79a442ed5e36b, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -300,14 +308,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2462959881978710014, guid: f91ca470de530a1489931646c5f86801, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2462959881978710014, guid: f91ca470de530a1489931646c5f86801, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2462959881978710014, guid: f91ca470de530a1489931646c5f86801, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6
       objectReference: {fileID: 0}
@@ -346,10 +346,6 @@ PrefabInstance:
     - target: {fileID: 2462959881978710014, guid: f91ca470de530a1489931646c5f86801, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2462959881978710014, guid: f91ca470de530a1489931646c5f86801, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f91ca470de530a1489931646c5f86801, type: 3}

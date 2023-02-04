@@ -81,6 +81,8 @@ public class GameManager : MonoBehaviour
     {
         score++;
         UpdateUI();
+        if (score % 100 == 0)
+            FindObjectOfType<Player>().PlaySound("point");
     }
 
     private void IncreaseSpeed()
