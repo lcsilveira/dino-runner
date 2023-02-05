@@ -214,6 +214,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 275685718619396390, guid: c2b245d087b260b459e79a442ed5e36b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 275685718619396390, guid: c2b245d087b260b459e79a442ed5e36b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 594579017056281679, guid: c2b245d087b260b459e79a442ed5e36b, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -260,6 +268,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5814035004406386718, guid: c2b245d087b260b459e79a442ed5e36b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8078360925506336914, guid: c2b245d087b260b459e79a442ed5e36b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8078360925506336914, guid: c2b245d087b260b459e79a442ed5e36b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8078360925506336914, guid: c2b245d087b260b459e79a442ed5e36b, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -432,6 +452,18 @@ PrefabInstance:
     - target: {fileID: 1735453412170987933, guid: 0f9795cede6b3cf49b4f32581462c1f9, type: 3}
       propertyPath: m_Name
       value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 2286152052583003478, guid: 0f9795cede6b3cf49b4f32581462c1f9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2286152052583003478, guid: 0f9795cede6b3cf49b4f32581462c1f9, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2286152052583003478, guid: 0f9795cede6b3cf49b4f32581462c1f9, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f9795cede6b3cf49b4f32581462c1f9, type: 3}
