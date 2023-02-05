@@ -50,22 +50,42 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.paused)
+            return;
+
         if (isGrounded)
         {
             bool isUITouch = EventSystem.current.IsPointerOverGameObject(0);
-            bool touchJump = !isUITouch && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began;
+            bool touchJump = false, touchCrouch = false;
+
+            if (!isUITouch && Input.touchCount > 0)
+            {
+                Touch touch = Input.GetTouch(0);
+                // If it's touching right or left side.
+                if (touch.position.x > Screen.width / 2 && touch.phase == TouchPhase.Began)
+                    touchJump = true;
+
+                if (touch.position.x < Screen.width / 2 && touch.phase != TouchPhase.Ended)
+                    touchCrouch = true;
+            }
 
             if (Input.GetButton("Jump") || touchJump)
             {
                 isGrounded = false;
                 animator.SetBool("isGrounded", false);
+                animator.SetBool("isCrouched", false);
                 rigBody.velocity = Vector2.up * jumpForce;
                 PlaySound("jump");
             }
+            else if (Input.GetAxis("Vertical") < 0 || touchCrouch)
+                animator.SetBool("isCrouched", true);
+            else
+                animator.SetBool("isCrouched", false);
         }
         else
         {
             rigBody.velocity += Vector2.up * Physics2D.gravity.y * fallMultiplier * Time.deltaTime;
+            animator.SetBool("isCrouched", false);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)

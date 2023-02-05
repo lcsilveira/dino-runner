@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Animator animatorUI;
     [SerializeField] private TextMeshProUGUI playButtonText;
     [SerializeField] private GameObject menuObj;
+    [SerializeField] private GameObject aboutPanelObj;
+    [SerializeField] private GameObject howToPlayPanelObj;
 
     [Header("Save Manager")]
     private PlayerData playerData;
@@ -54,6 +56,11 @@ public class GameManager : MonoBehaviour
         savePath = Application.persistentDataPath + Path.AltDirectorySeparatorChar + saveFile;
         LoadData();
         UpdateUI();
+
+        if (playerData != null)
+            Destroy(howToPlayPanelObj);
+        else
+            howToPlayPanelObj.SetActive(true);
     }
 
     private void Update()
@@ -105,6 +112,9 @@ public class GameManager : MonoBehaviour
 
         menuObj.SetActive(paused);
 
+        if (!paused)
+            aboutPanelObj.SetActive(false);
+
         if (isDead)
         {
             isDead = false;
@@ -112,6 +122,21 @@ public class GameManager : MonoBehaviour
             score = 0;
             SceneManager.LoadScene(0);
         }
+    }
+
+    public void ToggleCredits()
+    {
+        aboutPanelObj.SetActive(!aboutPanelObj.activeSelf);
+    }
+
+    public void CloseHowToPlayPanel()
+    {
+        Destroy(howToPlayPanelObj);
+    }
+
+    public void CloseGame()
+    {
+        Application.Quit();
     }
 
     public void UpdateUI()
@@ -123,7 +148,10 @@ public class GameManager : MonoBehaviour
     public void SaveData()
     {
         if (playerData == null)
+        {
             playerData = new PlayerData(score);
+            highScore = score;
+        }
         else
             playerData.highScore = highScore = score;
         string json = JsonUtility.ToJson(playerData);

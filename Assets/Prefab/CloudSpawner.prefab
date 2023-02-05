@@ -51,6 +51,7 @@ MonoBehaviour:
     maxVertVariation: 3
   minSpawnRate: 3
   maxSpawnRate: 7
+  increaseSpawnSpeed: 0
   rightEdge: {x: 0, y: 0, z: 0}
   spawnPosition: {x: 0, y: 0, z: 0}
   spawnAcceleration: 0

@@ -17,11 +17,12 @@ public class Spawner : MonoBehaviour
     [Header("Configuration")]
     [SerializeField] private float minSpawnRate;
     [SerializeField] private float maxSpawnRate;
-
+    [SerializeField] private bool increaseSpawnSpeed = true;
+    
     [Header("Debug")]
     [SerializeField] private Vector3 rightEdge;
     [SerializeField] private Vector3 spawnPosition;
-    [SerializeField] private float spawnAcceleration;
+    [SerializeField] private float spawnAcceleration = 0f;
 
     private void Start()
     {
@@ -57,7 +58,7 @@ public class Spawner : MonoBehaviour
         }
 
         // Decreases the time between spawns the game speed increases (limited to 0,5s).
-        if (spawnAcceleration < 0.5)
+        if (increaseSpawnSpeed && spawnAcceleration < 0.5)
             spawnAcceleration = GameManager.Instance.gameSpeed / 100;
 
         Invoke(nameof(Spawn), UnityEngine.Random.Range(minSpawnRate - spawnAcceleration, maxSpawnRate - spawnAcceleration));
